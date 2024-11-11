@@ -34,14 +34,7 @@ const getWalletBalance = async() => {
             publicKey,
             0.5 * LAMPORTS_PER_SOL
         )
-        const latestBlockHash = await connection.getLatestBlockhash()
-        
-        await connection.confirmTransaction({
-            blockhash: latestBlockHash.blockhash,
-            lastValidBlockHeight: latestBlockHash.lastValidBlockHeight,
-            signature: fromAirDropSignature
-        }, 'confirmed')
-        
+        await connection.confirmTransaction(fromAirDropSignature)
         console.log('Airdrop completed successfully')
     } catch(err) {
         console.error('Error requesting airdrop:', err)
